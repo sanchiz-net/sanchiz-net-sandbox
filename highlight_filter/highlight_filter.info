@@ -1,0 +1,4 @@
+name = Sandbox Highlight filter
+description = Allows hightlight words in text.
+core = 7.x
+package = Sanchiz.net sandbox

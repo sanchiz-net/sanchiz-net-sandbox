@@ -1,0 +1,70 @@
+<?php
+/**
+ * @file
+ * Allows hightlight words in text.
+ */
+
+/**
+ * Implements hook_filter_info().
+ */
+function highlight_filter_filter_info() {
+  $return = array();
+
+  $return['highlight_filter'] = array(
+    'title' => t('Highlight filter'),
+    'description' => t('Allows hightlight words in text.'),
+    'settings callback' => '_highlight_filter_settings',
+    'tips callback' => '_highlight_filter_tips',
+    'prepare callback' => '_highlight_filter_prepare',
+    'process callback' => '_highlight_filter_process',
+    'default settings' => array(),
+  );
+
+  return $return;
+}
+
+/**
+ * Filter settings callback.
+ */
+function _highlight_filter_settings($form, &$form_state, $filter, $format, $defaults, $filters) {
+  $filter->settings += $defaults;
+  $elements = array();
+  $elements['words'] = array(
+    '#type' => 'textarea',
+    '#title' => t('Highlight filter words'),
+    '#description' => t('Enter words which should be highlighted, with commas.'),
+    '#default_value' => !empty($filter->settings['words']) ? $filter->settings['words'] : '',
+  );
+  return $elements;
+}
+
+/**
+ * Filter tips callback.
+ */
+function _highlight_filter_tips($filter, $format, $long = FALSE) {
+  if (!empty($filter->settings['words'])) {
+    return t('Will be highlighted the next words:: @words', array('@words' => $filter->settings['words']));
+  }
+  return t('No words to highlight.');
+}
+
+/**
+ * Filter prepare callback.
+ */
+function _highlight_filter_prepare($text, $filter, $format, $langcode, $cache, $cache_id) {
+  return $text;
+}
+
+/**
+ * Filter process callback.
+ */
+function _highlight_filter_process($text, $filter, $format, $langcode, $cache, $cache_id) {
+  if (!empty($filter->settings['words'])) {
+    $words = explode(',', $filter->settings['words']);
+    foreach ($words as $word) {
+      $word = trim($word);
+      $text = str_replace($word, '<b>' . $word . '</b>', $text);
+    }
+  }
+  return $text;
+}
