@@ -1,7 +1,7 @@
 Sanchiz.net Sandbox
 ===================
 
-Here you can find sample code form [sanchiz.net] blog.
+Here you can find sample code for [sanchiz.net] blog.
 
 |Code folder|English article|Russian article|Decription|
 |---|---|:-:|---|
