@@ -1,0 +1,4 @@
+name = Sandbox Example block
+description = Create custom block with configuration form.
+core = 7.x
+package = Sanchiz.net sandbox
