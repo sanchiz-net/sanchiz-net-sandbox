@@ -21,7 +21,7 @@ function node_form_example_menu() {
 }
 
 /**
- * Example form callback
+ * Example form callback.
  */
 function node_form_example_article() {
   global $user;
