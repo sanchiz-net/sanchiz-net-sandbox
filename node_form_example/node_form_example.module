@@ -1,0 +1,71 @@
+<?php
+/**
+ * @file
+ *
+ * Example node form.
+ */
+
+/**
+ * Implements hook_menu().
+ */
+function node_form_example_menu() {
+  $items['create/article'] = array(
+    'title' => 'Create article',
+    'page callback' => 'node_form_example_article',
+    'access callback' => TRUE,
+    'type' => MENU_NORMAL_ITEM,
+    'file path' => drupal_get_path('module', 'node'),
+    'file' => 'node.pages.inc',
+  );
+  return $items;
+}
+
+/**
+ * Example form callback
+ */
+function node_form_example_article() {
+  global $user;
+  $type = 'article';
+  $form_id = $type . '_node_form';
+  $node = new stdClass();
+  $node->uid = $user->uid;
+  $node->type = $type;
+  node_object_prepare($node);
+  $output = drupal_get_form($form_id, $node);
+  return render($output);
+}
+
+/**
+ * Implements hook_block_info().
+ */
+function node_form_example_block_info() {
+  $blocks['node_form_example_block'] = array(
+    'info' => t('Create article block'),
+    'status' => TRUE,
+    'region' => 'sidebar_first',
+    'visibility' => BLOCK_VISIBILITY_NOTLISTED,
+  );
+  return $blocks;
+}
+
+/**
+ * Implements hook_block_view().
+ */
+function node_form_example_block_view($delta = '') {
+  switch ($delta) {
+    case 'node_form_example_block':
+      module_load_include('inc', 'node', 'node.pages');
+      $block['subject'] = t('Create article block');
+      $block['content'] = node_form_example_article();
+      break;
+  }
+  return $block;
+}
+
+/**
+ * Implements hook_menu_alter().
+ */
+function node_form_example_menu_alter(&$items) {
+  $items['file/ajax']['file'] = 'node.pages.inc';
+  $items['file/ajax']['file path'] = drupal_get_path('module', 'node');
+}

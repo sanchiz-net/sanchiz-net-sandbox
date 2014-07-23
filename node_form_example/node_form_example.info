@@ -1,0 +1,4 @@
+name = Sandbox node form example
+description = Example node form as block.
+core = 7.x
+package = Sanchiz.net sandbox
