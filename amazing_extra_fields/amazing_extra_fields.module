@@ -1,0 +1,51 @@
+<?php
+/**
+ * @file
+ * Create extra fields.
+ */
+
+/**
+ * Implements hook_field_extra_fields().
+ */
+function amazing_extra_fields_field_extra_fields() {
+  return array(
+    'node' => array(
+      'article' => array(
+        'display' => array(
+          'random_field' => array(
+            'label' => t('Random field'),
+            'description' => t('Random field'),
+            'weight' => 0,
+            'callback' => 'amazing_extra_fields_random_field_callback',
+          ),
+        ),
+      ),
+    ),
+  );
+}
+
+/**
+ * Implements hook_node_view().
+ */
+function amazing_extra_fields_node_view($node, $view_mode, $langcode) {
+  $extra_fields = field_extra_fields_get_display('node', $node->type, $view_mode);
+  if (isset($extra_fields['random_field']) && $extra_fields['random_field']['visible']) {
+    $node->content['random_field'] = array(
+      '#markup' => amazing_extra_fields_random_field_content(),
+    );
+  }
+}
+
+/**
+ * Random field callback (for views).
+ */
+function amazing_extra_fields_random_field_callback($node) {
+  return amazing_extra_fields_random_field_content();
+}
+
+/**
+ * Random field content.
+ */
+function amazing_extra_fields_random_field_content() {
+  return rand();
+}
