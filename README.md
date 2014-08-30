@@ -26,4 +26,4 @@ Feel free to send me an email <mailto:alexander.schedrov@gmail.com>
 [Extra fields]:https://github.com/Sanchiz/sanchiz-net-sandbox/tree/master/amazing_extra_fields
 [Drupal Extra Fields. Интеграция с Views]:http://sanchiz.net/blog/extra-fields-views
 [Custom templates, hook_theme]:https://github.com/Sanchiz/sanchiz-net-sandbox/tree/master/example_template
-[Drupal 7: определение шаблонов tpl.php и функций темизации. Хуки темизации]:http://sanchiz.net/blog/extra-fields-views
+[Drupal 7: определение шаблонов tpl.php и функций темизации. Хуки темизации]:http://sanchiz.net/blog/define-hook-theme
