@@ -10,6 +10,7 @@ Here you can find sample code for [sanchiz.net] blog.
 |[Highlight filter]|||How to create custom text format|
 |[Node form example]||[Отображение формы добавления материала в блоке. Форма материала с полем изображения или файла.]|How to create custom block with node form|
 |[Extra fields]||[Drupal Extra Fields. Интеграция с Views]|How to create extra fields and integrate them with views|
+|[Custom templates, hook_theme]||[Drupal 7: определение шаблонов tpl.php и функций темизации. Хуки темизации]|Как создать собственные шаблоны в Drupal 7|
 
 
 Feel free to send me an email <mailto:alexander.schedrov@gmail.com>
@@ -24,3 +25,5 @@ Feel free to send me an email <mailto:alexander.schedrov@gmail.com>
 [Отображение формы добавления материала в блоке. Форма материала с полем изображения или файла.]:http://sanchiz.net/blog/display-node-form-block
 [Extra fields]:https://github.com/Sanchiz/sanchiz-net-sandbox/tree/master/amazing_extra_fields
 [Drupal Extra Fields. Интеграция с Views]:http://sanchiz.net/blog/extra-fields-views
+[Custom templates, hook_theme]:https://github.com/Sanchiz/sanchiz-net-sandbox/tree/master/example_template
+[Drupal 7: определение шаблонов tpl.php и функций темизации. Хуки темизации]:http://sanchiz.net/blog/extra-fields-views
