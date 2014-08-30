@@ -1,0 +1,55 @@
+<?php
+/**
+ * @file
+ * Example template
+ */
+
+/**
+ * Implemets hook_menu().
+ */
+function example_template_menu() {
+  $items['example_template'] = array(
+    'title' => 'Example template',
+    'page callback' => 'example_template_callback',
+    'access callback' => TRUE,
+    'type' => MENU_NORMAL_ITEM,
+  );
+  return $items;
+}
+
+/**
+ * Implements hook_theme().
+ */
+function example_template_theme() {
+  return array(
+    'custom_template' => array(
+      'variables' => array(
+        'body' => NULL,
+        'title' => NULL,
+      ),
+      'template' => 'custom_template',
+    ),
+  );
+}
+
+/**
+ * Page callback.
+ */
+function example_template_callback() {
+  return theme('custom_template', array('body' => 'Some body', 'title' => 'Some title'));
+}
+
+/**
+ * Returns HTML for a custom template.
+ */
+function theme_custom_template($variables) {
+  $output = '<div class="custom-template-wrapper">';
+  $output .= '<div class="body">';
+  $output .= $variables['body'];
+  $output .= '</div>';
+  $output .= '<div class="title">';
+  $output .= $variables['title'];
+  $output .= '</div>';
+  $output .= '</div>';
+  return $output;
+}
