@@ -1,0 +1,4 @@
+name = Sandbox View Mode
+description = Add custom view mode.
+core = 7.x
+package = Sanchiz.net sandbox

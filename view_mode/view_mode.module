@@ -1,0 +1,28 @@
+<?php
+/**
+ * @file
+ * Add custom view mode.
+ */
+
+/**
+ * Implements hook_entity_info_alter().
+ */
+function view_mode_entity_info_alter(&$entity_info) {
+  $entity_info['node']['view modes']['gallery_teaser'] = array(
+    'label' => t('Gallery teaser'),
+    'custom settings' => TRUE,
+  );
+}
+
+/**
+ * Implements hook_preprocess_node().
+ */
+function view_mode_preprocess_node(&$vars) {
+  /**
+   * Example template name - node--article--gallery-teaser.tpl.php
+   * Use underscores in template suggestions, dashes in the filename.
+   */
+  if ($vars['view_mode'] == 'gallery_teaser') {
+    $vars['theme_hook_suggestions'][] = 'node__' . $vars['type'] . '__gallery_teaser';
+  }
+}
