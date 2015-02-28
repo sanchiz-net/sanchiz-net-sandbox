@@ -1,13 +1,13 @@
 <?php
 /**
  * @file
- * Add twisty dropdown button.
+ * Add twisty dropbutton button.
  */
 
 /**
  * Implements hook_theme().
  */
-function ctools_twisty_dropdown_theme() {
+function ctools_twisty_dropbutton_theme() {
   return array(
     'ctools_twisty_dropbutton' => array(
       'variables' => array(
@@ -22,19 +22,21 @@ function ctools_twisty_dropdown_theme() {
  */
 function theme_ctools_twisty_dropbutton($variables) {
   $links = $variables['links'];
-  // Add needed files.
   if (count($links) > 1) {
     ctools_add_js('dropbutton');
     ctools_add_css('dropbutton');
   }
   ctools_add_css('button');
-
-  // Provide a unique identifier for every button on the page.
+  // Unique identifier buttons.
   static $twisty_id = 0;
   $twisty_id++;
   $output = '<div class="ctools-dropbutton ctools-button" id="ctools-button-' . $twisty_id . '">';
-  $output .= '<div class="ctools-link"><a href="#" class="ctools-twisty ctools-text">' . t('open') . '</a></div>';
-  $output .= '<div class="ctools-content">' . theme('item_list', array('items' => $links)) . '</div>';
+  $output .= '<div class="ctools-link">';
+  $output .= '<a href="#" class="ctools-twisty ctools-text">' . t('open') . '</a>';
+  $output .= '</div>';
+  $output .= '<div class="ctools-content">';
+  $output .= theme('item_list', array('items' => $links));
+  $output .= '</div>';
   $output .= '</div>';
 
   return $output;
