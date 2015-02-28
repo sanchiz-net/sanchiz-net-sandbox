@@ -1,0 +1,41 @@
+<?php
+/**
+ * @file
+ * Add twisty dropdown button.
+ */
+
+/**
+ * Implements hook_theme().
+ */
+function ctools_twisty_dropdown_theme() {
+  return array(
+    'ctools_twisty_dropbutton' => array(
+      'variables' => array(
+        'links' => array(),
+      ),
+    ),
+  );
+}
+
+/**
+ * Theme function for twisty dropdown.
+ */
+function theme_ctools_twisty_dropbutton($variables) {
+  $links = $variables['links'];
+  // Add needed files.
+  if (count($links) > 1) {
+    ctools_add_js('dropbutton');
+    ctools_add_css('dropbutton');
+  }
+  ctools_add_css('button');
+
+  // Provide a unique identifier for every button on the page.
+  static $twisty_id = 0;
+  $twisty_id++;
+  $output = '<div class="ctools-dropbutton ctools-button" id="ctools-button-' . $twisty_id . '">';
+  $output .= '<div class="ctools-link"><a href="#" class="ctools-twisty ctools-text">' . t('open') . '</a></div>';
+  $output .= '<div class="ctools-content">' . theme('item_list', array('items' => $links)) . '</div>';
+  $output .= '</div>';
+
+  return $output;
+}

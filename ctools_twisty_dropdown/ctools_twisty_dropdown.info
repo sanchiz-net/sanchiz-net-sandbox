@@ -1,0 +1,4 @@
+name = Sandbox Twisty Dropdown
+description = Add twisty dropdown button
+core = 7.x
+package = Sanchiz.net sandbox
