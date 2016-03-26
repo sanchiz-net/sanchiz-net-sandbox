@@ -5,6 +5,7 @@ Here you can find sample code for [sanchiz.net] blog.
 
 |Code folder|English article|Russian article|Decription|
 |---|---|:-:|---|
+|[Multiple forms/Form factory]|||Multiple forms. How to display multiple instances of one form on single page.|
 |[Example block]||[Создание блока с формой конфигурации]|How to create custom block with configuration form|
 |[Simple Image]||[Изменение размера изображения средствами PHP]|Image resizing|
 |[Highlight filter]|||How to create custom text format|
@@ -31,3 +32,4 @@ Feel free to send me an email <mailto:alexander.schedrov@gmail.com>
 [Drupal 7: определение шаблонов tpl.php и функций темизации. Хуки темизации]:http://sanchiz.net/blog/define-hook-theme
 [Custom view mode]:https://github.com/Sanchiz/sanchiz-net-sandbox/tree/master/view_mode
 [Drupal 7: Добавление новых типов отображения ноды]:http://sanchiz.net/blog/node-view-modes
+[Multiple forms/Form factory]:https://github.com/sanchiz-net/sanchiz-net-sandbox/tree/master/form_factory
