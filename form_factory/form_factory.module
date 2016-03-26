@@ -1,0 +1,112 @@
+<?php
+/**
+ * @file
+ * Multiple forms.
+ */
+
+/**
+ * Implements hook_menu().
+ */
+function form_factory_menu() {
+  $items['form-factory'] = array(
+    'title' => 'Form Factory Example',
+    'page callback' => 'form_factory_page_callback',
+    'access callback' => TRUE,
+    'type' => MENU_NORMAL_ITEM,
+  );
+  return $items;
+}
+
+/**
+ * Page callback.
+ */
+function form_factory_page_callback() {
+  $top_form = drupal_get_form('form_factory_top_form');
+  $bottom_form = drupal_get_form('form_factory_bottom_form');
+
+  return render($top_form) . render($bottom_form);
+}
+
+/**
+ * Implements hook_forms().
+ */
+function form_factory_forms($form_id, $args) {
+  if ($form_id == 'form_factory_top_form') {
+    // Do something.
+  }
+
+  $forms['form_factory_top_form'] = array(
+    'callback' => 'form_factory_instance_form',
+    // Those arguments can be passed into drupal_get_form().
+    'callback arguments' => array(t('Top form'), TRUE),
+  );
+
+  $forms['form_factory_bottom_form'] = array(
+    'callback' => 'form_factory_instance_form',
+    // Those arguments can be passed into drupal_get_form().
+    'callback arguments' => array(t('Bottom form'), FALSE),
+  );
+
+  return $forms;
+}
+
+/**
+ * Form definition.
+ *
+ * @param array $form
+ *   Form array.
+ *
+ * @param array $form_state
+ *   Form state.
+ *
+ * @param string $title
+ *   Argument that come from form_factory_forms().
+ *
+ * @param bool $is_top_form
+ *   Argument that come from form_factory_forms().
+ *
+ * @return array
+ *   Form definition.
+ */
+function form_factory_instance_form($form, &$form_state, $title, $is_top_form) {
+  $form['title'] = array(
+    '#markup' => '<h2>' . $title . '</h2>',
+  );
+
+  $form['user_name'] = array(
+    '#title' => t('Name'),
+    '#type' => 'textfield',
+  );
+
+  $form['email'] = array(
+    '#title' => t('Email'),
+    '#type' => 'textfield',
+  );
+
+  // Argument that is coming from form_factory_forms();
+  if ($is_top_form) {
+    $form['top_form'] = array(
+      '#type' => 'checkbox',
+      '#title' => t('Notify administration'),
+
+    );
+  }
+
+  $form['submit'] = array(
+    '#type' => 'submit',
+    '#value' => t('Submit'),
+  );
+
+  return $form;
+}
+
+/**
+ * Submit callback.
+ */
+function form_factory_instance_form_submit($form, &$form_state) {
+  $message_args = array(
+    '%form_id' => $form_state['build_info']['form_id'],
+    '%base_form_id' => $form_state['build_info']['base_form_id'],
+  );
+  drupal_set_message(t('%form_id is submitted. Base form id is %base_form_id', $message_args));
+}
